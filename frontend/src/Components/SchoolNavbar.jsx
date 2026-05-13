@@ -1,215 +1,190 @@
-// import './App.css'
-import React, { useState, useRef, useEffect } from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../assets/CSS/SchoolNavbar.css";
 
-
-function App() {
-
+function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const menuRef = useRef(null);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
-
-    const handleTransitionEnd = () => {
-        if (menuRef.current) {
-            menuRef.current.style.removeProperty('transition');
-        }
-    };
-
-    useEffect(() => {
-        const menu = menuRef.current;
-
-        if (menu) {
-            const dropdownArrows = menu.querySelectorAll('.dropdown > i');
-            dropdownArrows.forEach((arrow, index) => {
-                arrow.addEventListener('click', () => {
-                    arrow.closest('.dropdown').classList.toggle('active');
-                });
-
-                // Cleanup event listeners when component unmounts
-                return () => {
-                    arrow.removeEventListener('click', () => {
-                        arrow.closest('.dropdown').classList.toggle('active');
-                    });
-                };
-            });
-        }
-    }, [menuOpen]);
-
-
-
+    const navItems = [
+        {
+            title: "About Us",
+            submenu: [
+                { title: "Our School", link: "/" },
+                { title: "Principal Message", link: "/" },
+                { title: "Mission & Vision", link: "/" },
+            ],
+        },
+        {
+            title: "Admissions",
+            submenu: [
+                { title: "Admission Process", link: "/" },
+                {
+                    title: "Forms",
+                    submenu: [
+                        { title: "LKG Admission Form", link: "/" },
+                        { title: "Class 1-5 Form", link: "/" },
+                        { title: "Class 6-12 Form", link: "/" },
+                    ],
+                },
+                { title: "Fee Structure", link: "/" },
+            ],
+        },
+        {
+            title: "Academics",
+            submenu: [
+                { title: "Curriculum", link: "/" },
+                {
+                    title: "Departments",
+                    submenu: [
+                        { title: "Primary Wing", link: "/" },
+                        { title: "Middle Wing", link: "/" },
+                        { title: "Senior Wing", link: "/" },
+                    ],
+                },
+                { title: "Faculty", link: "/" },
+            ],
+        },
+        {
+            title: "Facilities",
+            submenu: [
+                { title: "Library", link: "/" },
+                { title: "Labs", link: "/" },
+                { title: "Transport", link: "/" },
+            ],
+        },
+    ];
 
     return (
         <>
-            <div className="maincontainer">
-                <header className="header">
-                    <div className="container">
-                        <div className="logo">
-                            <img src="https://png.pngtree.com/png-vector/20211011/ourmid/pngtree-school-logo-png-image_3977360.png" alt="logo" />
-                            <a to="/" className="logotext">Paliwal</a>
+            {/* TOP BAR */}
+            <div className="topbar">
+                <div className="topbar-left">
+                    <span>📞 +91 9876543210</span>
+                    <span>✉️ school@gmail.com</span>
+                </div>
 
-                        </div>
-                        <nav
-                            className={`menu ${menuOpen ? 'open' : ''}`}
-                            ref={menuRef}
-                            style={{ transition: menuOpen ? 'transform 0.5s ease' : 'none' }}
-                            onTransitionEnd={handleTransitionEnd}
-                        >
-                            <div className="head">
-                                <div className="logo">
-                                    <img src="https://png.pngtree.com/png-vector/20211011/ourmid/pngtree-school-logo-png-image_3977360.png" alt="logo" />
-                                </div>
-                                <button
-                                    type="button"
-                                    className="close-menu-btn"
-                                    onClick={toggleMenu}
-                                />
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="#">Home</a>
-                                </li>
-
-                                <li className="dropdown">
-                                    <a href="#">Admissions</a>
-                                    <i className="fa-solid fa-chevron-down"></i>
-                                    <ul className="sub-menu">
-                                        <li>
-                                            <a href="#">
-                                                <span>Admission Process</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Admission Criteria</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Admission Schedule</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Selected Candidate Lists</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Fee Structure</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li className="dropdown">
-                                    <a href="#"> Academics</a>
-                                    <i className="fa-solid fa-chevron-down"></i>
-                                    <ul className="sub-menu">
-                                        <li>
-                                            <a href="#">
-                                                <span>Infrastructure</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Achievements</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Curricular Activities</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Principal’s Message</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Chairman’s Message</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Affiliation</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>Faculty</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li className="dropdown">
-                                    <a href="#">Dashbord</a>
-                                    <i className="fa-solid fa-chevron-down"></i>
-                                    <ul className="sub-menu">
-                                        <li>
-                                            <a href="#">
-                                                <span>about team</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>testimonail</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>principle msg</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>non mirch</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <span>khatai</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">media gallery</a>
-                                </li>
-
-                                <li>
-                                    <a href="#">Contact</a>
-                                </li>
-                                <li>
-                                    <a href="#">about</a>
-                                </li>
-                                <li>
-                                    <a href="/login">apply now</a>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <div className="header-right">
-                            <button
-                                type="button"
-                                className="open-menu-btn"
-                                onClick={toggleMenu}
-                            >
-                                <span className="line line-1"></span>
-                                <span className="line line-2"></span>
-                                <span className="line line-3"></span>
-                            </button>
-                        </div>
-                    </div>
-                </header>
+                <button className="admission-btn">Admission Open</button>
             </div>
 
+            {/* NAVBAR */}
+            <header className="navbar">
+                <div className="navbar-container">
+                    {/* LOGO */}
+                    <div className="logo">
+                        <Link to="/">
+                            <img
+                                src="https://i.postimg.cc/dVTd51Kn/logo2.png"
+                                alt="school logo"
+                            />
+                        </Link>
+                    </div>
+
+                    {/* DESKTOP MENU */}
+                    <nav className="desktop-nav">
+                        <ul>
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+
+                            {navItems.map((item, index) => (
+                                <li key={index} className="dropdown">
+                                    <span>{item.title}</span>
+
+                                    <ul className="dropdown-menu">
+                                        {item.submenu.map((sub, i) => (
+                                            <li
+                                                key={i}
+                                                className={sub.submenu ? "nested-dropdown" : ""}
+                                            >
+                                                <Link to={sub.link || "/"}>{sub.title}</Link>
+
+                                                {sub.submenu && (
+                                                    <ul className="nested-menu">
+                                                        {sub.submenu.map((nested, j) => (
+                                                            <li key={j}>
+                                                                <Link to={nested.link}>
+                                                                    {nested.title}
+                                                                </Link>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            ))}
+
+                            <li>
+                                <Link to="/">Gallery</Link>
+                            </li>
+                            <li>
+                                <Link to="/">Notice Board</Link>
+                            </li>
+                            <li>
+                                <Link to="/">Contact</Link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    {/* MOBILE BUTTON */}
+                    <button
+                        className="menu-btn"
+                        onClick={() => setMenuOpen(true)}
+                    >
+                        ☰
+                    </button>
+                </div>
+            </header>
+
+            {/* OVERLAY */}
+            {menuOpen && (
+                <div
+                    className="overlay"
+                    onClick={() => setMenuOpen(false)}
+                ></div>
+            )}
+
+            {/* MOBILE DRAWER */}
+            <div className={`mobile-drawer ${menuOpen ? "open" : ""}`}>
+                <div className="drawer-header">
+                    <h3>Menu</h3>
+                    <button onClick={() => setMenuOpen(false)}>✕</button>
+                </div>
+
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+
+                    {navItems.map((item, index) => (
+                        <li key={index} className="mobile-dropdown">
+                            <span>{item.title}</span>
+
+                            <ul className="mobile-submenu">
+                                {item.submenu.map((sub, i) => (
+                                    <li key={i}>
+                                        <Link to={sub.link || "/"}>{sub.title}</Link>
+
+                                        {sub.submenu && (
+                                            <ul className="mobile-nested">
+                                                {sub.submenu.map((nested, j) => (
+                                                    <li key={j}>
+                                                        <Link to={nested.link}>{nested.title}</Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        </li>
+                    ))}
+
+                    <li><Link to="/">Gallery</Link></li>
+                    <li><Link to="/">Contact</Link></li>
+                </ul>
+            </div>
         </>
-    )
+    );
 }
 
-export default App
+export default Navbar;

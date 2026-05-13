@@ -1,0 +1,252 @@
+/* ===========================
+   Newsletter / CTA Section
+   =========================== */
+
+.newsletter-section {
+    background: var(--brand-color);
+
+    padding: 3.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.newsletter-dots {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 220px;
+    height: 220px;
+    opacity: 0.07;
+    pointer-events: none;
+}
+
+.newsletter-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* ===========================
+   Left Column
+   =========================== */
+
+.newsletter-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.newsletter-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--primary-color);
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    padding: 5px 14px;
+    margin-bottom: 1.25rem;
+    width: fit-content;
+}
+
+.newsletter-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--brand-color);
+    flex-shrink: 0;
+}
+
+.newsletter-badge-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #b5d4f4;
+    letter-spacing: 0.05em;
+}
+
+.newsletter-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.35;
+    margin-bottom: 1rem;
+}
+
+.newsletter-heading-accent {
+    color: var(--primary-color);
+}
+
+.newsletter-subtext {
+    font-size: 14.5px;
+    color: var(--primary-color);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+    max-width: 420px;
+}
+
+/* ===========================
+   Buttons
+   =========================== */
+
+.newsletter-btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.nl-btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 24px;
+    background: #ffffff;
+    color: #0c447c;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.nl-btn-primary:hover {
+    opacity: 0.9;
+}
+
+.nl-btn-outline {
+    padding: 11px 24px;
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.nl-btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ===========================
+   Right Column: Stat Cards
+   =========================== */
+
+.newsletter-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 0.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: background 0.2s ease;
+}
+
+.stat-card:hover {
+    background: rgba(255, 255, 255, 0.11);
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-icon.icon-blue {
+    background: rgba(55, 138, 221, 0.2);
+}
+
+.stat-icon.icon-teal {
+    background: rgba(29, 158, 117, 0.18);
+}
+
+.stat-icon.icon-amber {
+    background: rgba(239, 159, 39, 0.18);
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-number {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 12.5px;
+    color: #85b7eb;
+    margin-top: 3px;
+}
+
+.stat-badge {
+    margin-left: auto;
+    background: rgba(93, 202, 165, 0.2);
+    border: 0.5px solid rgba(93, 202, 165, 0.4);
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: #9fe1cb;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 768px) {
+    .newsletter-section {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .newsletter-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .newsletter-heading {
+        font-size: 24px;
+    }
+
+    .newsletter-dots {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .newsletter-section {
+        padding: 2rem 1.25rem;
+    }
+
+    .newsletter-heading {
+        font-size: 22px;
+    }
+
+    .newsletter-btn-group {
+        flex-direction: column;
+    }
+
+    .nl-btn-primary,
+    .nl-btn-outline {
+        width: 100%;
+        justify-content: center;
+    }
+}

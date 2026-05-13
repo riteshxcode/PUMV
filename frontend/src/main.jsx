@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../src/assets/CSS/SchoolNavbar.css'
 import '../src/assets/CSS/Facilities_Infrastructure.css'
+import '../src/assets/CSS/theme.css'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home'

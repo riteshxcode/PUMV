@@ -1,51 +1,27 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import axios from "axios";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import "../assets/CSS/OurToppers.css";
 
-import '../assets/CSS/OurToppers.css';
-
-function ImageSlider({ apiEndpoint }) {
-    const [images, setImages] = useState([]);
+function ImageSlider({ images }) {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [loading, setLoading] = useState(true);
-
-    const fetchImages = async () => {
-        try {
-            const response = await axios.get(apiEndpoint);
-
-            // better image field
-            // const imgUrls = response.data.map((img) => img.thumbnailUrl);
-            const imgUrls = response.data.map((img) => img.url);
-            setImages(imgUrls);
-
-        } catch (error) {
-            console.error("Error fetching images:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        fetchImages();
-    }, [apiEndpoint]);
 
     const nextSlide = () => {
-        setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+        setCurrentIndex((prev) =>
+            prev === images.length - 1 ? 0 : prev + 1
+        );
     };
 
     const prevSlide = () => {
-        setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+        setCurrentIndex((prev) =>
+            prev === 0 ? images.length - 1 : prev - 1
+        );
     };
 
     useEffect(() => {
-        if (images.length > 0) {
-            const interval = setInterval(nextSlide, 3000);
-            return () => clearInterval(interval);
-        }
-    }, [images, currentIndex]);
-
-    if (loading) return <p>Loading...</p>;
+        const interval = setInterval(nextSlide, 3000);
+        return () => clearInterval(interval);
+    }, [currentIndex]);
 
     return (
         <div className="slider-container">
@@ -54,11 +30,7 @@ function ImageSlider({ apiEndpoint }) {
             </button>
 
             <div className="slide-box">
-                <img
-                    src={images[currentIndex]}
-                    alt={`Slide ${currentIndex + 1}`}
-                    className="slider-image"
-                />
+                <img src={images[currentIndex]} alt="slider" className="slider-image" />
             </div>
 
             <button className="arrow-btn" onClick={nextSlide}>
@@ -69,31 +41,55 @@ function ImageSlider({ apiEndpoint }) {
 }
 
 function OurToppers() {
+    const achievementImages = [
+        "https://picsum.photos/id/1011/400/400",
+        "https://picsum.photos/id/1015/400/400",
+        "https://picsum.photos/id/1025/400/400",
+        "https://picsum.photos/id/1035/400/400",
+    ];
+
+    const topper10thImages = [
+        "https://picsum.photos/id/1005/400/400",
+        "https://picsum.photos/id/1006/400/400",
+        "https://picsum.photos/id/1008/400/400",
+        "https://picsum.photos/id/1010/400/400",
+    ];
+
+    const topper12thImages = [
+        "https://picsum.photos/id/1020/400/400",
+        "https://picsum.photos/id/1024/400/400",
+        "https://picsum.photos/id/1027/400/400",
+        "https://picsum.photos/id/1033/400/400",
+    ];
+
     return (
         <div className="container py-5">
-            <h1 className="text-center mb-5 fw-bold">Our Toppers & Achievements</h1>
+            <h1 className="text-center mb-5 fw-bold">
+                Our Toppers & Achievements
+            </h1>
 
             <div className="row g-4">
                 <div className="col-md-4">
                     <div className="slider-card">
                         <h3 className="mb-3">Achievements</h3>
-                        <ImageSlider apiEndpoint="https://jsonplaceholder.typicode.com/photos?_limit=4" />
+                        <ImageSlider images={achievementImages} />
                     </div>
                 </div>
 
                 <div className="col-md-4">
                     <div className="slider-card">
                         <h3 className="mb-3">10th Toppers</h3>
-                        <ImageSlider apiEndpoint="https://jsonplaceholder.typicode.com/photos?_start=5&_limit=4" />
+                        <ImageSlider images={topper10thImages} />
                     </div>
                 </div>
 
                 <div className="col-md-4">
                     <div className="slider-card">
                         <h3 className="mb-3">12th Toppers</h3>
-                        <ImageSlider apiEndpoint="https://jsonplaceholder.typicode.com/photos?_start=10&_limit=4" />
+                        <ImageSlider images={topper12thImages} />
                     </div>
                 </div>
+
             </div>
         </div>
     );

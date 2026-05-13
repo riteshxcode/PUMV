@@ -1,0 +1,41 @@
+:root {
+    /* Brand Colors */
+    --primary-color: #123356;
+    --secondary-color: #2f5d8a;
+    --brand-color: #f4b400;
+    --ctabutton-color: #28a745;
+    --ctabuttonhover-color: #1e7e34;
+
+    /* Neutral Colors */
+    --white: #ffffff;
+    --light-bg: #f8fafc;
+    --section-bg: #eef4fa;
+    --border-color: #dbe3ec;
+
+    /* Text Colors */
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+    --heading-color: #123356;
+
+    /* Buttons */
+    --btn-primary-bg: var(--primary-color);
+    --btn-primary-text: #ffffff;
+
+    --btn-secondary-bg: var(--brand-color);
+    --btn-secondary-text: #123356;
+
+    /* Typography */
+    --font-family: "Poppins", sans-serif;
+
+    --subheadingtextsize: 2rem;
+    --paragrphtextsize: 1.1rem;
+    --heading-fontsize: 2.5rem;
+
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+
+    /* Shadow */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
