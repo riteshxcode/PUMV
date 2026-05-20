@@ -1,121 +1,80 @@
-// import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import hero3 from '../assets/Images/Hero_img/hero3.png'
 import React, { useRef } from 'react';
-
 import { useGSAP } from '@gsap/react'
 import { gsap } from 'gsap'
 
 function Hero() {
+    const heroImg = useRef(null);
+    const schoolName = useRef(null);
+    const tagline = useRef(null);
 
-
-    // animation part starts here 
-
-
-    const heroImg = useRef(null);// Create a reference to the hero image
     useGSAP(() => {
-        gsap.from(
-            heroImg.current,
-            {
-                opacity: 1,
-                x: 900,
-                // scale: 2,
-                duration: 1,
-                delay: 1,
-                ease: 'power1',
-            },
-        )
-    })
+        gsap.from(heroImg.current, {
+            opacity: 0,
+            x: 200,
+            duration: 1.2,
+            delay: 0.5,
+            ease: 'power3.out',
+        });
 
-    const schoolName = useRef(null);// Create a reference to the hero schoolname text
-    useGSAP(() => {
         gsap.from(schoolName.current, {
-            x: -900,
-            duration: 1,
-            delay: 1,
-            opacity: 1,
-            ease: 'power1'
+            opacity: 0,
+            y: -100,
+            duration: 1.2,
+            delay: 0.3,
+            ease: 'power3.out',
+        });
 
-        })
-    })
-
-
-
-
-
-
-
+        gsap.from(tagline.current, {
+            opacity: 0,
+            y: 50,
+            duration: 1.2,
+            delay: 0.8,
+            ease: 'power3.out',
+        });
+    });
 
     return (
-        <>
-
+        <section className="hero-section d-flex align-items-center text-light" 
+                 style={{ 
+                     minHeight: '100vh', 
+                     background: 'linear-gradient(135deg, rgb(18 51 86), rgb(255 255 255))', 
+                     overflow: 'hidden' 
+                 }}>
             <div className="container">
-                <div className="row row-1 align-items-center my-5 py-6 mx-1" >
-
-                    {/* text area */}
-
-                    <div className="col-lg-6" ref={schoolName}>
-                        <div className="lc-block mb-2"  >
-                            <div editable="rich">
-
-                                <h2 className="fw-bold  fs-1  " >
-                                    Paliwal High senior sec. school
-                                </h2>
-                            </div>
-                        </div>
-
-                        <div className="lc-block mb-3">
-                            <div editable="rich">
-                                <h3 className="fs-4">
-                                    Baldevganj, Kosikalan , Mathura - U.P
-                                </h3>
-                            </div>
-                        </div>
-
-                        <div className="lc-block mb-3">
-                            <div editable="rich">
-                                <p className="lead fs-6">
-                                    Quickly design and customize responsive mobile-first sites with
-                                    Bootstrap, the world’s most popular front-end open source toolkit,
-                                    featuring Sass variables and mixins, responsive grid system,
-                                    extensive prebuilt components, and powerful JavaScript plugins.
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* <div className="lc-block d-grid gap-2 d-md-flex justify-content-md-start"></div> */}
-
-
-                        <div className="lc-block d-grid gap-2 d-md-flex justify-content-md-start">
-                            <button className="btn-hover color-9" href="#" role="button">
-                                Apply now
-                            </button>
-
-                        </div>
-
+                <div className="row align-items-center">
+                    
+                    {/* Text Area */}
+                    <div className="col-lg-6 text-center text-lg-start">
+                        <h1 ref={schoolName} className="fw-bold display-4 mb-3">
+                            Paliwal High Senior Secondary School
+                        </h1>
+                        <h3 ref={tagline} className="fw-light mb-4">
+                            Baldevganj, Kosikalan, Mathura - U.P
+                        </h3>
+                        <p className="lead mb-4">
+                            Empowering students with knowledge, values, and creativity to build a brighter future.
+                        </p>
+                        <button style={{background:'var(--brand-color)',color:'var(--primary-color)'}} className="btn  btn-lg px-4 py-2 fw-bold shadow-lg">
+                            Apply Now
+                        </button>
                     </div>
 
-                    {/* image area  */}
-
-                    <div className="col-10 mx-auto col-sm-9 col-lg-6 my-5">
+                    {/* Image Area */}
+                    <div className="col-lg-6 text-center mt-5 mt-lg-0">
                         <img
                             ref={heroImg}
                             src={hero3}
-                            className="d-block mx-lg-auto fluid"
-                            alt="hero-img"
-                        // loading="lazy"
+                            className="img-fluid"
+                            alt="School campus"
+                            style={{ maxHeight: '500px' }}
                         />
                     </div>
-
                 </div>
             </div>
-
-        </>
-
-    )
+        </section>
+    );
 }
 
-export default Hero
-
-
-
+export default Hero;

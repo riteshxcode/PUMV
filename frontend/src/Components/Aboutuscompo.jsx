@@ -79,28 +79,9 @@ const IconArrow = () => (
   </svg>
 );
 
-const PILLARS = [
-  { icon: "📚", wrap: "p-navy", title: "Academic Excellence", desc: "Rigorous curriculum across Science, Commerce & Arts streams guided by expert faculty.", delay: "" },
-  { icon: "⚽", wrap: "p-green", title: "Sports & Athletics", desc: "State-level sports infrastructure building teamwork, discipline and physical well-being.", delay: "delay-2" },
-  { icon: "🎨", wrap: "p-gold", title: "Arts & Culture", desc: "Vibrant programs in music, drama and fine arts celebrating creativity and heritage.", delay: "delay-3" },
-  { icon: "🤝", wrap: "p-red", title: "Values & Character", desc: "Moral education and civic responsibility woven into every aspect of school life.", delay: "delay-4" },
-];
-
-const TIMELINE = [
-  { year: "1965", event: "School founded by the Paliwal Trust" },
-  { year: "1978", event: "First Board toppers — school's name established" },
-  { year: "1990", event: "Science stream & laboratories set up" },
-  { year: "2005", event: "Computer labs & sports complex inaugurated" },
-  { year: "2015", event: "Golden Jubilee — 50 years of excellence" },
-  { year: "2023", event: "Smart classrooms & digital learning launched" },
-];
-
 export default function AboutUsSection() {
   const [heroRef, heroVisible] = useVisible(0.1);
   const [vmRef, vmVisible] = useVisible(0.15);
-  const [pillarsRef, pillarsVisible] = useVisible(0.15);
-  const [principalRef, principalVisible] = useVisible(0.1);
-  const [tlRef, tlVisible] = useVisible(0.2);
 
   return (
     <>
@@ -175,70 +156,7 @@ export default function AboutUsSection() {
             </div>
           </div>
 
-          {/* ── PILLARS ── */}
-          <SectionDivider label="Our Core Pillars" />
-          <div className="pillars-section" ref={pillarsRef}>
-            <div className="pillars-grid">
-              {PILLARS.map((p) => (
-                <div key={p.title} className={`pillar-card fade-in-up ${p.delay} ${pillarsVisible ? "visible" : ""}`}>
-                  <div className={`pillar-icon-wrap ${p.wrap}`}>{p.icon}</div>
-                  <div className="pillar-title">{p.title}</div>
-                  <p className="pillar-desc">{p.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* ── PRINCIPAL MESSAGE ── */}
-          <SectionDivider label="Principal's Message" />
-          <div className="principal-section" ref={principalRef}>
-            <div className={`principal-wrapper fade-in-up ${principalVisible ? "visible" : ""}`}>
-              <div className="principal-inner">
-                <div className="principal-avatar-wrap">
-                  <div className="principal-avatar">SP</div>
-                  <div className="principal-name">Dr. S. Paliwal</div>
-                  <div className="principal-role">Principal & Director</div>
-                </div>
-                <div className="principal-content">
-                  <div className="principal-tag">✦ Message from the Principal</div>
-                  <p className="principal-quote">
-                    "Every child who walks through our gates carries a spark of greatness. Our duty is
-                    not merely to teach — it is to kindle that spark into a flame."
-                  </p>
-                  <p className="principal-body">
-                    At Paliwal H.S.S School, we take great pride in our legacy of nurturing not just
-                    scholars, but complete human beings. Education at its finest is the harmonious
-                    development of mind, body and spirit. Over the decades, thousands of our alumni
-                    have gone on to become doctors, engineers, administrators, artists and
-                    entrepreneurs — each carrying with them the values instilled within these walls.
-                    <br /><br />
-                    We remain deeply committed to providing every student with the guidance, resources,
-                    and encouragement they need to shine. To our students: dream boldly, work
-                    diligently, and always act with integrity. The world awaits your contribution.
-                  </p>
-                  <div className="principal-sig">
-                    <div className="principal-sig-line"></div>
-                    <div className="principal-sig-text">
-                      Dr. S. Paliwal — Principal, Paliwal H.S.S School, Mathura Kosikalan
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ── TIMELINE ── */}
-          <SectionDivider label="Our Journey" />
-          <div className="timeline-section" ref={tlRef}>
-            <div className="timeline-row">
-              {TIMELINE.map((t, i) => (
-                <div key={t.year} className={`tl-item fade-in-up delay-${Math.min(i + 1, 6)} ${tlVisible ? "visible" : ""}`}>
-                  <div className="tl-year">{t.year}</div>
-                  <div className="tl-event">{t.event}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+       
 
         </div>
       </section>

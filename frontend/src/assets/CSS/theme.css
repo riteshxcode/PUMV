@@ -26,6 +26,7 @@
 
     /* Typography */
     --font-family: "Poppins", sans-serif;
+    --font-family-headings: 'Playfair Display', Georgia, serif;
 
     --subheadingtextsize: 2rem;
     --paragrphtextsize: 1.1rem;

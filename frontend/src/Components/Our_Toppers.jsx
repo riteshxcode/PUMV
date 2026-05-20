@@ -1,98 +1,149 @@
-import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import React, { useState, useEffect, useCallback } from "react";
 import "../assets/CSS/OurToppers.css";
 
-function ImageSlider({ images }) {
-    const [currentIndex, setCurrentIndex] = useState(0);
+const cardConfigs = [
+  {
+    id: 0,
+    title: "Achievements",
+    subtitle: "Milestones & Honours",
+    icon: "🏆",
+    accentClass: "accent-brand",
+    images: [
+      "https://picsum.photos/id/1011/600/600",
+      "https://picsum.photos/id/1015/600/600",
+      "https://picsum.photos/id/1025/600/600",
+      "https://picsum.photos/id/1035/600/600",
+    ],
+  },
+  {
+    id: 1,
+    title: "10th Toppers",
+    subtitle: "Board Excellence",
+    icon: "🎓",
+    accentClass: "accent-secondary",
+    images: [
+      "https://picsum.photos/id/1005/600/600",
+      "https://picsum.photos/id/1006/600/600",
+      "https://picsum.photos/id/1008/600/600",
+      "https://picsum.photos/id/1010/600/600",
+    ],
+  },
+  {
+    id: 2,
+    title: "12th Toppers",
+    subtitle: "Board Excellence",
+    icon: "🌟",
+    accentClass: "accent-primary",
+    images: [
+      "https://picsum.photos/id/1020/600/600",
+      "https://picsum.photos/id/1024/600/600",
+      "https://picsum.photos/id/1027/600/600",
+      "https://picsum.photos/id/1033/600/600",
+    ],
+  },
+];
 
-    const nextSlide = () => {
-        setCurrentIndex((prev) =>
-            prev === images.length - 1 ? 0 : prev + 1
-        );
-    };
+function SliderCard({ config }) {
+  const [current, setCurrent] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const [direction, setDirection] = useState("next");
+  const total = config.images.length;
 
-    const prevSlide = () => {
-        setCurrentIndex((prev) =>
-            prev === 0 ? images.length - 1 : prev - 1
-        );
-    };
+  const goTo = useCallback(
+    (idx, dir = "next") => {
+      if (animating) return;
+      setDirection(dir);
+      setAnimating(true);
+      setTimeout(() => {
+        setCurrent(idx);
+        setAnimating(false);
+      }, 380);
+    },
+    [animating]
+  );
 
-    useEffect(() => {
-        const interval = setInterval(nextSlide, 3000);
-        return () => clearInterval(interval);
-    }, [currentIndex]);
+  const next = useCallback(() => goTo((current + 1) % total, "next"), [current, goTo, total]);
+  const prev = useCallback(() => goTo((current - 1 + total) % total, "prev"), [current, goTo, total]);
 
-    return (
-        <div className="slider-container">
-            <button className="arrow-btn" onClick={prevSlide}>
-                <FaArrowLeft />
-            </button>
+  useEffect(() => {
+    const t = setInterval(next, 3500);
+    return () => clearInterval(t);
+  }, [next]);
 
-            <div className="slide-box">
-                <img src={images[currentIndex]} alt="slider" className="slider-image" />
-            </div>
+  return (
+    <div className={`ot-card ${config.accentClass}`}>
+      <div className="ot-accent-bar" />
 
-            <button className="arrow-btn" onClick={nextSlide}>
-                <FaArrowRight />
-            </button>
+      <div className="ot-card-header">
+        <div className="ot-icon-badge">
+          <span>{config.icon}</span>
         </div>
-    );
+        <div className="ot-card-titles">
+          <p className="ot-card-title">{config.title}</p>
+          <p className="ot-card-subtitle">{config.subtitle}</p>
+        </div>
+        <div className="ot-count-badge">
+          {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+        </div>
+      </div>
+
+      <div className="ot-image-wrap">
+        <img
+          key={current}
+          src={config.images[current]}
+          alt={`${config.title} ${current + 1}`}
+          className={`ot-slider-img ${direction === "next" ? "slide-in-right" : "slide-in-left"}`}
+          onError={(e) => {
+            e.target.src = `https://picsum.photos/seed/${config.id}${current}/600/600`;
+          }}
+        />
+        <div className="ot-img-overlay" />
+      </div>
+
+      <div className="ot-controls">
+        <button className="ot-ctrl-btn" onClick={prev} aria-label="Previous">‹</button>
+        <div className="ot-dots-row">
+          {config.images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i, i > current ? "next" : "prev")}
+              className={`ot-dot ${i === current ? "ot-dot--active" : ""}`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        <button className="ot-ctrl-btn" onClick={next} aria-label="Next">›</button>
+      </div>
+    </div>
+  );
 }
 
-function OurToppers() {
-    const achievementImages = [
-        "https://picsum.photos/id/1011/400/400",
-        "https://picsum.photos/id/1015/400/400",
-        "https://picsum.photos/id/1025/400/400",
-        "https://picsum.photos/id/1035/400/400",
-    ];
+export default function OurToppers() {
+  return (
+    <section className="ot-section">
 
-    const topper10thImages = [
-        "https://picsum.photos/id/1005/400/400",
-        "https://picsum.photos/id/1006/400/400",
-        "https://picsum.photos/id/1008/400/400",
-        "https://picsum.photos/id/1010/400/400",
-    ];
+      <div className="ot-container">
+        <div className="ot-heading-block">
+          <span className="ot-pill">Recognition &amp; Excellence</span>
+          <h2 className="ot-heading">Our Toppers &amp; Achievements</h2>
+          <p className="ot-subheading">
+            Celebrating brilliance, perseverance, and the spirit of excellence across every milestone.
+          </p>
 
-    const topper12thImages = [
-        "https://picsum.photos/id/1020/400/400",
-        "https://picsum.photos/id/1024/400/400",
-        "https://picsum.photos/id/1027/400/400",
-        "https://picsum.photos/id/1033/400/400",
-    ];
-
-    return (
-        <div className="container py-5">
-            <h1 className="text-center mb-5 fw-bold">
-                Our Toppers & Achievements
-            </h1>
-
-            <div className="row g-4">
-                <div className="col-md-4">
-                    <div className="slider-card">
-                        <h3 className="mb-3">Achievements</h3>
-                        <ImageSlider images={achievementImages} />
-                    </div>
-                </div>
-
-                <div className="col-md-4">
-                    <div className="slider-card">
-                        <h3 className="mb-3">10th Toppers</h3>
-                        <ImageSlider images={topper10thImages} />
-                    </div>
-                </div>
-
-                <div className="col-md-4">
-                    <div className="slider-card">
-                        <h3 className="mb-3">12th Toppers</h3>
-                        <ImageSlider images={topper12thImages} />
-                    </div>
-                </div>
-
-            </div>
         </div>
-    );
-}
 
-export default OurToppers;
+        <div className="ot-grid">
+          {cardConfigs.map((config, i) => (
+            <div
+              key={config.id}
+              className="ot-card-wrapper"
+              style={{ animationDelay: `${i * 0.12}s` }}
+            >
+              <SliderCard config={config} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

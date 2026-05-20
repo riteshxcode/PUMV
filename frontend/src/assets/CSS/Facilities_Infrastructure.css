@@ -1,15 +1,72 @@
-/* body {
-    margin-top: 20px;
-} */
 
-.section {
-    padding: 100px 0;
-    position: relative;
-}
 
 .gray-bg {
-    background-color: #ebf4fa;
+    background-color: #dde8f2;
+    padding: 96px 0 80px;
 }
+
+
+/* ─── Heading block start here ────────────────────────────────────────── */
+.ot-heading-block {
+  text-align: center;
+  margin-bottom: 52px;
+  animation: fadeUp 0.6s ease both;
+}
+
+.ot-pill {
+ display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgb(244 180 0 / 18%);
+    border: 1px solid rgb(18 51 86 / 42%);
+    color: var(--primary-color);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
+
+.ot-heading {
+  font-family: var(--font-family-headings);
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+
+.ot-subheading {
+  font-size: 15px;
+  color: var(--muted-color);
+  max-width: 480px;
+  margin: 0 auto 20px;
+  line-height: 1.65;
+}
+
+.ot-heading-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.ot-line-segment {
+  height: 4px;
+  border-radius: 4px;
+}
+.ot-line-segment--primary {
+  width: 48px;
+  background: var(--primary-color);
+}
+.ot-line-segment--brand {
+  width: 14px;
+  background: var(--brand-color);
+}
+
+/* ─── Heading block ends here ────────────────────────────────────────── */
 
 /* Blog 
 ---------------------*/

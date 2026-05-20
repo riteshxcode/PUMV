@@ -8,21 +8,21 @@ import Facilities_Infrastructure from '../Components/Facilities_Infrastructure'
 import AboutUs from './AboutUs'
 import Our_Archeivements from '../Components/Our_Archeivements'
 import Our_Toppers from '../Components/Our_Toppers'
-
-
+import PriencpleMessage from '../Components/PriencpleMessage'
+import Aboutuscompo from '../Components/Aboutuscompo' 
 
 function Home() {
     return (
 
         <>
             <Hero />
-            <AboutUs/>
+
+            <Aboutuscompo />
             <Our_Toppers/>
-            {/* <Our_Archeivements/> */}
-            {/* <Cards /> */}
-            <Cards />
+ 
             <Facilities_Infrastructure />
             <Faq />
+            <PriencpleMessage/>
             <Testimonial />
             <Newsletter />
         </>

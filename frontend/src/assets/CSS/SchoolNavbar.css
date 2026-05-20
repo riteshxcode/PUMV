@@ -12,6 +12,8 @@
 .topbar-left {
     display: flex;
     gap: 20px;
+    color: var(--primary-color);
+    font-weight: 500;
 }
 
 /* BUTTON */
@@ -38,6 +40,7 @@
 
 .navbar-container {
     max-width: 1400px;
+    width: 100%;
     margin: auto;
     padding: 0 35px;
     height: 52px;
@@ -57,6 +60,7 @@
     display: flex;
     list-style: none;
     gap: 28px;
+    margin-bottom: 0px;
     align-items: center;
 }
 
@@ -83,19 +87,20 @@
     color: #fff;
     font-size: 15px;
     font-weight: 600;
+    padding: 4px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .desktop-nav a:hover,
 .desktop-nav span:hover {
-    color: #2563eb;
+    color:  var(--brand-color);
 }
 
 /* DROPDOWN */
 .dropdown-menu {
     position: absolute;
-    top: 38px;
+    top: 29px;
     left: 0;
     min-width: 230px;
     white-space: nowrap;
@@ -182,8 +187,8 @@
     position: fixed;
     top: 0;
     height: 100%;
-    right: -425px;
-    width: 90%;
+    right: -100%;
+    width: min(360px, 90vw);
     background: #ffffff7a;
     z-index: 1001;
     backdrop-filter: blur(4px);
@@ -228,7 +233,7 @@
 }
 
 /* MOBILE */
-@media (max-width: 991px) {
+@media (max-width: 768px) {
     .desktop-nav {
         display: none;
     }
@@ -276,6 +281,6 @@
     }
 
     .mobile-drawer.open {
-    right: 30px;
+    right: 0;
 }
 }
